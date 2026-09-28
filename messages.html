@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Noi — Mesaje programate</title>
+  <meta name="theme-color" content="#faf6f3" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <script src="js/pwa.js" defer></script>
+</head>
+<body>
+  <div id="offline-banner" class="offline-banner">Ești offline — vezi doar ce e deja încărcat</div>
+  <div id="error-notice" class="notice notice-error toast" hidden></div>
+
+  <main class="screen messages-screen">
+    <div class="container stack">
+      <header>
+        <p class="eyebrow">🔒 Deschide-mă când...</p>
+        <h1>Mesaje programate</h1>
+      </header>
+
+      <button id="new-scheduled-btn" class="btn btn-ghost btn-small">+ Mesaj programat</button>
+
+      <p id="scheduled-empty" class="text-muted center" style="padding: 24px 0;" hidden>
+        Niciun mesaj programat încă.
+      </p>
+
+      <div id="scheduled-list"></div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="app.html" class="nav-item">🏠<span>Home</span></a>
+    <a href="memories.html" class="nav-item">📸<span>Amintiri</span></a>
+    <a href="messages.html" class="nav-item nav-item-active">💌<span>Mesaje</span></a>
+    <a href="poems.html" class="nav-item">📝<span>Poezii</span></a>
+    <span class="nav-item nav-item-disabled">⚙️<span>Setări</span></span>
+  </nav>
+
+  <!-- Formular mesaj programat (același tipar de overlay ca restul aplicației) -->
+  <div id="scheduled-form-overlay" class="mood-picker" hidden>
+    <div class="mood-picker-sheet card">
+      <div class="mood-picker-header">
+        <h3>Mesaj programat nou</h3>
+        <button id="close-scheduled-form" class="btn-icon" aria-label="Închide">✕</button>
+      </div>
+      <div id="scheduled-form-error" class="notice notice-error" hidden></div>
+      <form id="scheduled-form" class="stack" style="text-align: left;">
+        <div class="field">
+          <label for="scheduled-title-input">Titlu</label>
+          <input type="text" id="scheduled-title-input" placeholder="Deschide-mă când ți-e dor de mine" required />
+        </div>
+        <div class="field">
+          <label for="scheduled-content-input">Mesaj</label>
+          <textarea id="scheduled-content-input" class="food-text-input" rows="4" required></textarea>
+        </div>
+        <div class="field">
+          <label for="scheduled-photo-input">Poză atașată (opțional)</label>
+          <input type="file" id="scheduled-photo-input" accept="image/*" />
+          <img id="scheduled-photo-preview" class="photo-preview" hidden alt="Previzualizare" style="margin-top: 8px;" />
+        </div>
+        <div class="field">
+          <label for="scheduled-date-input">Data deblocării</label>
+          <input type="date" id="scheduled-date-input" required />
+        </div>
+        <div class="field" style="margin-bottom: 8px;">
+          <label for="scheduled-time-input">Ora deblocării</label>
+          <input type="time" id="scheduled-time-input" required />
+        </div>
+        <p class="text-muted" style="font-size: 0.75rem; margin-bottom: 8px;">
+          Poza atașată se șterge automat la miezul nopții, o dată cu mesajul.
+        </p>
+        <button type="submit" id="scheduled-form-submit" class="btn btn-primary">Salvează</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Overlay pentru citirea unui mesaj programat deja deblocat -->
+  <div id="open-message-overlay" class="mood-picker" hidden>
+    <div class="mood-picker-sheet card">
+      <div class="mood-picker-header">
+        <h3 id="open-message-title"></h3>
+        <button id="close-open-message" class="btn-icon" aria-label="Închide">✕</button>
+      </div>
+      <img id="open-message-photo" class="photo-preview" hidden alt="" style="margin-bottom: 12px;" />
+      <p id="open-message-content" style="white-space: pre-wrap;"></p>
+    </div>
+  </div>
+
+  <script type="module" src="js/messagesPage.js"></script>
+</body>
+</html>

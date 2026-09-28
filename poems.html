@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Noi — Poezii</title>
+  <meta name="theme-color" content="#faf6f3" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <script src="js/pwa.js" defer></script>
+</head>
+<body>
+  <div id="offline-banner" class="offline-banner">Ești offline — vezi doar ce e deja încărcat</div>
+  <div id="error-notice" class="notice notice-error toast" hidden></div>
+
+  <main class="screen poems-screen">
+    <div class="container stack">
+      <header>
+        <p class="eyebrow">📝 Poezii</p>
+        <h1>Poeziile ei</h1>
+      </header>
+
+      <!-- Vizibil DOAR pentru contul ei — ascuns complet pentru celălalt cont -->
+      <section id="new-poem-card" class="card" hidden>
+        <p class="eyebrow">Scrie o poezie nouă</p>
+        <form id="poem-form" class="stack" style="margin-top: 10px;">
+          <input id="poem-title-input" type="text" placeholder="Titlu (opțional)" class="food-text-input" />
+          <textarea id="poem-content-input" class="food-text-input" rows="6" placeholder="Scrie aici…" required></textarea>
+          <button type="submit" id="poem-form-submit" class="btn btn-primary">Publică</button>
+        </form>
+      </section>
+
+      <p id="poems-empty" class="text-muted center" style="padding: 24px 0;" hidden>
+        Nicio poezie încă.
+      </p>
+
+      <div id="poems-list"></div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="app.html" class="nav-item">🏠<span>Home</span></a>
+    <a href="memories.html" class="nav-item">📸<span>Amintiri</span></a>
+    <a href="messages.html" class="nav-item">💌<span>Mesaje</span></a>
+    <a href="poems.html" class="nav-item nav-item-active">📝<span>Poezii</span></a>
+    <span class="nav-item nav-item-disabled">⚙️<span>Setări</span></span>
+  </nav>
+
+  <script type="module" src="js/poemsPage.js"></script>
+</body>
+</html>

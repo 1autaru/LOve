@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Noi</title>
+  <meta name="theme-color" content="#faf6f3" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <script src="js/pwa.js" defer></script>
+</head>
+<body>
+  <main class="screen center">
+    <div class="spin" role="status" aria-label="Se încarcă"></div>
+  </main>
+
+  <script type="module">
+    import { getSession } from "./js/auth.js";
+
+    getSession().then((session) => {
+      window.location.replace(session ? "app.html" : "login.html");
+    });
+  </script>
+</body>
+</html>

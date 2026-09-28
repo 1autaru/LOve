@@ -1,0 +1,61 @@
+/* ==========================================================================
+   NOI — Responsive
+   Mobile-first. Breakpoints testate conceptual pentru 360 / 390 / 412 /
+   tablet / desktop.
+   ========================================================================== */
+
+/* Ecran de login — centrare verticală pe telefon */
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.auth-logo {
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+/* Tablet ușor mai mult respiro */
+@media (min-width: 600px) {
+  .auth-card { max-width: 400px; }
+  .card { padding: 32px; }
+}
+
+/* Desktop — vom adăuga sidebar/nav în fazele următoare;
+   pentru login păstrăm simplu, doar mai mult spațiu vertical. */
+@media (min-width: 960px) {
+  .auth-screen { padding: 40px; }
+}
+
+/* ---------- Dashboard (Faza 2) ---------- */
+
+/* Pe telefoane foarte mici, mood-urile stau tot pe același rând
+   (2 coloane egale funcționează bine chiar și la 360px), dar reducem
+   puțin spacing-ul intern al cardurilor. */
+@media (max-width: 380px) {
+  .card { padding: 18px; }
+  .mood-display { font-size: 1.05rem; }
+}
+
+/* Tablet/desktop — cardurile din dashboard nu trebuie să se întindă
+   pe toată lățimea; le limităm la o coloană centrală lizibilă,
+   similar cu auth-card, până adăugăm sidebar-ul în Faza 8. */
+@media (min-width: 960px) {
+  .dashboard-screen .container.stack {
+    max-width: 560px;
+  }
+}

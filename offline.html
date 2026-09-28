@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#7a3358" />
+  <title>Noi — Offline</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <script src="js/pwa.js" defer></script>
+</head>
+<body id="offline-page">
+  <div id="offline-banner" class="offline-banner visible" role="status">Ești offline</div>
+  <main class="auth-screen">
+    <div class="auth-card">
+      <section class="card stack">
+        <p class="auth-logo">Noi</p>
+        <h1>Un moment de liniște</h1>
+        <p class="text-muted">Interfața este disponibilă și fără internet. Fotografiile, mesajele și celelalte date private se încarcă după reconectare.</p>
+        <p>Nu s-a trimis și nu s-a salvat nimic pe server din această pagină.</p>
+        <button id="retry-connection" class="btn btn-primary">Revino în aplicație</button>
+        <button id="local-theme" class="btn btn-ghost" aria-pressed="false">Schimbă tema acestei pagini</button>
+        <p id="pwa-status" class="text-muted" role="status">Spațiul nostru te așteaptă când revine conexiunea.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

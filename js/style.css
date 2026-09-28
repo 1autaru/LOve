@@ -1,0 +1,623 @@
+/* ==========================================================================
+   NOI — Design tokens & base styles
+   Paletă: blush ivory / plum wine / accent aurie discretă
+   Tipografie: Fraunces (display) + Plus Jakarta Sans (UI/body)
+   Semnătură vizuală: "Firul" — o linie subțire, întreruptă, care leagă
+   elementele cheie (logo, carduri de mood, divizori) — simbol al legăturii
+   dintre doi oameni, fără să abuzăm de inimioare.
+   ========================================================================== */
+
+:root {
+  /* Culori — light mode */
+  --bg: #faf6f3;
+  --surface: #ffffff;
+  --surface-alt: #f4e9ec;
+  --text: #2a1e27;
+  --text-muted: #8b7482;
+  --accent: #7a3358;       /* plum/wine — accent principal */
+  --accent-strong: #5c2542;
+  --accent-soft: #d9a6b3;  /* dusty rose — accent secundar */
+  --accent-gold: #c9a468;  /* auriu discret — folosit rar, pt. countdown/highlight */
+  --border: rgba(122, 51, 88, 0.14);
+  --shadow-color: 320 35% 25%;
+
+  /* Layout */
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --nav-height: 68px;
+  --max-width: 480px;
+  --max-width-desktop: 1080px;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #1b1420;
+  --surface: #241a29;
+  --surface-alt: #2e2130;
+  --text: #f3e9ee;
+  --text-muted: #b79cae;
+  --accent: #e3a6be;
+  --accent-strong: #f0c3d5;
+  --accent-soft: #5c3350;
+  --accent-gold: #d8b876;
+  --border: rgba(227, 166, 190, 0.16);
+  --shadow-color: 320 60% 4%;
+
+  color-scheme: dark;
+}
+
+/* ---------- Reset ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+img { max-width: 100%; display: block; }
+
+button, input, textarea, select { font-family: inherit; font-size: inherit; color: inherit; }
+
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--accent-soft); color: var(--accent-strong); }
+
+/* Focus vizibil — accesibilitate */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/*
+ * IMPORTANT: atributul HTML `hidden` trebuie să câștige mereu, indiferent
+ * ce altă clasă (.stack, .btn, .center, .mood-picker etc.) mai are
+ * elementul. Fără regula asta, orice element cu o clasă care setează
+ * `display` (flex/grid/inline-flex) ȘI atributul `hidden` rămâne vizibil,
+ * pentru că acea clasă și regula implicită `[hidden]{display:none}` din
+ * browser au aceeași specificitate — iar stilul tău din style.css câștigă
+ * mereu în fața celui implicit. Asta cauza bug-ul din Faza 3 (cardul de
+ * întâlnire arăta ambele stări în același timp) și ar fi cauzat același
+ * bug la formularul de album nou și la "Încarcă mai multe" din Faza 4.
+ */
+[hidden] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Typografie ---------- */
+h1, h2, h3, .display {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+h1 { font-size: clamp(1.9rem, 6vw, 2.4rem); line-height: 1.15; }
+h2 { font-size: 1.4rem; line-height: 1.25; }
+h3 { font-size: 1.1rem; }
+
+.eyebrow {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.text-muted { color: var(--text-muted); }
+
+/* ---------- Layout containere ---------- */
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 960px) {
+  .container { max-width: var(--max-width-desktop); }
+}
+
+/* ---------- Carduri ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 1px 2px hsl(var(--shadow-color) / 0.06),
+              0 8px 24px -8px hsl(var(--shadow-color) / 0.14);
+}
+
+/* ---------- "Firul" — motiv semnătură ---------- */
+.thread {
+  display: block;
+  width: 100%;
+  height: 14px;
+  margin: 18px 0;
+  overflow: visible;
+}
+
+.thread path {
+  fill: none;
+  stroke: var(--accent-soft);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1 9;
+}
+
+.thread-small {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0 8px;
+}
+
+/* ---------- Butoane ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 20px -6px hsl(var(--shadow-color) / 0.45);
+}
+
+.btn-primary:hover { background: var(--accent-strong); }
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover { color: var(--text); border-color: var(--accent-soft); }
+
+.btn-small {
+  width: auto;
+  padding: 9px 16px;
+  font-size: 0.85rem;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.btn-icon:hover { color: var(--text); }
+
+/* ---------- Formulare ---------- */
+.field { margin-bottom: 16px; text-align: left; }
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--text);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.field input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.food-text-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.food-text-input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+/* ---------- Mesaje de stare (erori, offline) ---------- */
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+
+.notice-error {
+  background: color-mix(in srgb, #c0304f 12%, var(--surface));
+  color: #c0304f;
+}
+
+[data-theme="dark"] .notice-error {
+  background: color-mix(in srgb, #ff8fa3 16%, var(--surface));
+  color: #ff8fa3;
+}
+
+.notice-info {
+  background: var(--surface-alt);
+  color: var(--text-muted);
+}
+
+.notice.toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  max-width: 90vw;
+  box-shadow: 0 8px 24px -8px hsl(var(--shadow-color) / 0.3);
+}
+
+/* ---------- Offline banner ---------- */
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--accent-strong);
+  color: #fff;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  transform: translateY(-100%);
+  transition: transform 0.25s ease;
+}
+
+.offline-banner.visible { transform: translateY(0); }
+
+/* ---------- Dashboard (Faza 2/3) ---------- */
+.dashboard-screen {
+  padding: 28px 0 40px;
+}
+
+.dashboard-header { margin-bottom: 4px; }
+
+.mood-row {
+  display: flex;
+  gap: 20px;
+}
+
+.mood-block { flex: 1; }
+
+.mood-display {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 6px 0 10px;
+}
+
+.food-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.food-buttons .btn { width: auto; flex: 1; }
+
+.mood-card, .food-card, .meeting-card { margin-bottom: 16px; }
+
+/* Mood picker overlay (reutilizat și pentru formularul de întâlnire nouă) */
+.mood-picker {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: color-mix(in srgb, black 40%, transparent);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (min-width: 600px) {
+  .mood-picker { align-items: center; }
+}
+
+.mood-picker-sheet {
+  width: 100%;
+  max-width: 420px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (min-width: 600px) {
+  .mood-picker-sheet { border-radius: var(--radius-lg); }
+}
+
+.mood-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.mood-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mood-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.mood-option:hover { border-color: var(--accent-soft); }
+
+.mood-option-emoji { font-size: 1.2rem; }
+
+/* ---------- Bottom navigation ---------- */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  height: var(--nav-height);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+.nav-item span {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.nav-item-active { color: var(--accent); }
+
+.nav-item-disabled { opacity: 0.35; cursor: default; }
+
+.screen { padding-bottom: calc(var(--nav-height) + 16px); }
+
+@media (min-width: 960px) {
+  .bottom-nav { display: none; }
+  .screen { padding-bottom: 0; }
+}
+
+/* ---------- Amintiri / Galerie (Faza 4) ---------- */
+.chip-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.chip {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.chip-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.new-album-form { margin-top: -4px; }
+
+.upload-card { margin: 4px 0; }
+
+.photo-preview {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .gallery { grid-template-columns: repeat(4, 1fr); }
+}
+
+.photo-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface-alt);
+  aspect-ratio: 1;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 6px 8px;
+  font-size: 0.7rem;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+}
+
+.photo-delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* ---------- Mesaje / Chat (Faza 5) ---------- */
+.chat-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-scroll {
+  max-height: 50vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 2px;
+}
+
+.chat-bubble {
+  max-width: 78%;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+}
+
+.chat-bubble-mine {
+  align-self: flex-end;
+  background: var(--accent);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-bubble-theirs {
+  align-self: flex-start;
+  background: var(--surface-alt);
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-meta {
+  display: block;
+  font-size: 0.65rem;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.chat-input-row input { flex: 1; }
+.chat-input-row .btn { width: auto; padding: 12px 18px; }
+
+textarea.food-text-input {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.scheduled-card { margin-bottom: 12px; }
+.scheduled-locked { background: var(--surface-alt); }
+
+/* ---------- Utilitare ---------- */
+.stack { display: flex; flex-direction: column; gap: 14px; }
+.center { display: flex; align-items: center; justify-content: center; }
+.spin {
+  width: 20px; height: 20px;
+  border: 2.5px solid var(--surface-alt);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

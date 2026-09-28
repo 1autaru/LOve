@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Noi — Amintiri</title>
+  <meta name="theme-color" content="#faf6f3" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <script src="js/pwa.js" defer></script>
+</head>
+<body>
+  <div id="offline-banner" class="offline-banner">Ești offline — vezi doar ce e deja încărcat</div>
+  <div id="error-notice" class="notice notice-error toast" hidden></div>
+
+  <main class="screen memories-screen">
+    <div class="container stack">
+      <header>
+        <p class="eyebrow">📸 Amintiri</p>
+        <h1>Amintirile noastre</h1>
+      </header>
+
+      <div id="album-chips" class="chip-row"></div>
+
+      <button id="new-album-btn" class="btn btn-ghost btn-small">+ Album nou</button>
+
+      <div id="new-album-form" class="stack new-album-form" hidden>
+        <input id="new-album-input" type="text" placeholder="Numele albumului" class="food-text-input" />
+        <div class="food-buttons">
+          <button id="new-album-save" type="button" class="btn btn-primary btn-small">Salvează</button>
+          <button id="new-album-cancel" type="button" class="btn btn-ghost btn-small">Anulează</button>
+        </div>
+      </div>
+
+      <section class="card upload-card">
+        <p class="eyebrow">Adaugă o poză</p>
+        <form id="upload-form" class="stack" style="margin-top: 10px;">
+          <input id="photo-file-input" type="file" accept="image/*" required />
+          <img id="photo-preview" class="photo-preview" hidden alt="Previzualizare" />
+          <input id="photo-description" type="text" placeholder="Descriere (opțional)" class="food-text-input" />
+          <input id="photo-date" type="date" class="food-text-input" />
+          <button id="upload-btn" type="submit" class="btn btn-primary" disabled>Încarcă poza</button>
+        </form>
+      </section>
+
+      <div id="gallery" class="gallery"></div>
+
+      <p id="empty-state" class="text-muted center" style="padding: 24px 0;" hidden>
+        Nicio poză încă — adaugă prima amintire ✨
+      </p>
+
+      <button id="load-more-btn" class="btn btn-ghost" hidden>Încarcă mai multe</button>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="app.html" class="nav-item">🏠<span>Home</span></a>
+    <a href="memories.html" class="nav-item nav-item-active">📸<span>Amintiri</span></a>
+    <a href="messages.html" class="nav-item">💌<span>Mesaje</span></a>
+    <a href="poems.html" class="nav-item">📝<span>Poezii</span></a>
+    <span class="nav-item nav-item-disabled">⚙️<span>Setări</span></span>
+  </nav>
+
+  <script type="module" src="js/memories.js"></script>
+</body>
+</html>

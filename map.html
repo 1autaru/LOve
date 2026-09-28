@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Noi — Harta amintirilor</title>
+  <meta name="theme-color" content="#faf6f3" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <script src="js/pwa.js" defer></script>
+</head>
+<body>
+  <div id="offline-banner" class="offline-banner">Ești offline — vezi doar ce e deja încărcat</div>
+  <div id="error-notice" class="notice notice-error toast" hidden></div>
+
+  <main class="screen map-screen">
+    <div class="container stack" style="padding-bottom: 0;">
+      <header>
+        <p class="eyebrow">🗺️ Memory Map</p>
+        <h1>Locurile noastre</h1>
+      </header>
+      <a href="app.html" class="btn btn-ghost btn-small" style="width: fit-content;">← Înapoi la Home</a>
+    </div>
+
+    <div id="map" class="memory-map"></div>
+
+    <button id="add-location-fab" class="map-fab" aria-label="Adaugă un loc">+</button>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="app.html" class="nav-item">🏠<span>Home</span></a>
+    <a href="memories.html" class="nav-item">📸<span>Amintiri</span></a>
+    <a href="messages.html" class="nav-item">💌<span>Mesaje</span></a>
+    <a href="poems.html" class="nav-item">📝<span>Poezii</span></a>
+    <span class="nav-item nav-item-disabled">⚙️<span>Setări</span></span>
+  </nav>
+
+  <!-- Formular loc nou, cu mini-hartă pentru alegerea poziției -->
+  <div id="location-form-overlay" class="mood-picker" hidden>
+    <div class="mood-picker-sheet card">
+      <div class="mood-picker-header">
+        <h3>Loc nou</h3>
+        <button id="close-location-form" class="btn-icon" aria-label="Închide">✕</button>
+      </div>
+      <div id="location-form-error" class="notice notice-error" hidden></div>
+
+      <p class="text-muted" style="font-size: 0.8rem; margin-bottom: 8px;">
+        Apasă pe hartă ca să alegi locul exact.
+      </p>
+      <div id="pick-map" class="pick-map"></div>
+
+      <form id="location-form" class="stack" style="text-align: left; margin-top: 12px;">
+        <div class="field">
+          <label for="location-name-input">Nume</label>
+          <input type="text" id="location-name-input" placeholder="Prima noastră întâlnire" required />
+        </div>
+        <div class="field">
+          <label for="location-date-input">Data (opțional)</label>
+          <input type="date" id="location-date-input" />
+        </div>
+        <div class="field">
+          <label for="location-description-input">Descriere (opțional)</label>
+          <textarea id="location-description-input" class="food-text-input" rows="3"></textarea>
+        </div>
+        <div class="field" style="margin-bottom: 8px;">
+          <label for="location-photo-input">Poză (opțional)</label>
+          <input type="file" id="location-photo-input" accept="image/*" />
+          <img id="location-photo-preview" class="photo-preview" hidden alt="Previzualizare" style="margin-top: 8px;" />
+        </div>
+        <button type="submit" id="location-form-submit" class="btn btn-primary" disabled>Salvează</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="js/mapPage.js"></script>
+</body>
+</html>

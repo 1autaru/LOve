@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Noi — Statistici</title>
+  <meta name="theme-color" content="#faf6f3" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <script src="js/pwa.js" defer></script>
+</head>
+<body>
+  <div id="offline-banner" class="offline-banner">Ești offline — vezi doar ce e deja încărcat</div>
+  <div id="error-notice" class="notice notice-error toast" hidden></div>
+
+  <main class="screen stats-screen">
+    <div class="container stack">
+      <header>
+        <p class="eyebrow">📊 Statistici</p>
+        <h1>Noi, în cifre</h1>
+      </header>
+
+      <a href="app.html" class="btn btn-ghost btn-small" style="width: fit-content;">← Înapoi la Home</a>
+
+      <!-- Zile împreună -->
+      <section class="card">
+        <p class="eyebrow">❤️ Împreună de</p>
+        <div id="days-display" hidden>
+          <p id="days-count" class="stats-big-number"></p>
+          <p id="days-since-date" class="text-muted"></p>
+          <button id="edit-start-date-btn" class="btn btn-ghost btn-small" style="margin-top: 10px;">Editează data</button>
+        </div>
+        <div id="days-empty" class="stack" style="gap: 10px; margin-top: 10px;" hidden>
+          <p class="text-muted">Nu ați setat încă data de când sunteți împreună.</p>
+          <button id="set-start-date-btn" class="btn btn-primary btn-small">Setează data</button>
+        </div>
+      </section>
+
+      <!-- Grid de statistici -->
+      <div class="stats-grid">
+        <div class="card stats-tile">
+          <p class="stats-number" id="stat-photos">—</p>
+          <p class="stats-label">📸 Fotografii</p>
+        </div>
+        <div class="card stats-tile">
+          <p class="stats-number" id="stat-poems">—</p>
+          <p class="stats-label">📝 Poezii</p>
+        </div>
+        <div class="card stats-tile">
+          <p class="stats-number" id="stat-meetings">—</p>
+          <p class="stats-label">📅 Întâlniri</p>
+        </div>
+        <div class="card stats-tile">
+          <p class="stats-number" id="stat-moods">—</p>
+          <p class="stats-label">😊 Mood-uri schimbate</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Formular pentru setarea/editarea datei -->
+  <div id="start-date-form-overlay" class="mood-picker" hidden>
+    <div class="mood-picker-sheet card">
+      <div class="mood-picker-header">
+        <h3>De când sunteți împreună?</h3>
+        <button id="close-start-date-form" class="btn-icon" aria-label="Închide">✕</button>
+      </div>
+      <div id="start-date-form-error" class="notice notice-error" hidden></div>
+      <form id="start-date-form" class="stack" style="text-align: left;">
+        <div class="field" style="margin-bottom: 8px;">
+          <label for="start-date-input">Data</label>
+          <input type="date" id="start-date-input" required />
+        </div>
+        <button type="submit" id="start-date-form-submit" class="btn btn-primary">Salvează</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/statsPage.js"></script>
+</body>
+</html>
