@@ -118,7 +118,10 @@ els.closeOpenMessage.addEventListener("click", () => {
 });
 
 async function loadScheduled() {
-  const scheduled = await getScheduledMessages();
+  if (!navigator.onLine) return;
+  let scheduled;
+  try { scheduled = await getScheduledMessages(); }
+  catch (error) { showError(error.message); return; }
   els.scheduledList.innerHTML = "";
   els.scheduledEmpty.hidden = scheduled.length > 0;
   for (const msg of scheduled) {

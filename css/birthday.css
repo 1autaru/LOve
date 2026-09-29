@@ -1,0 +1,11 @@
+.birthday-header { padding: 24px 0 12px; }
+.birthday-header h1 { margin: 8px 0; }
+.birthday-seal { color: var(--accent); font-family: Georgia, serif; font-size: 3rem; }
+.birthday-screen audio { width: 100%; max-width: 100%; }
+.birthday-screen input[type="file"] { max-width: 100%; width: 100%; font-size: .85rem; }
+.birthday-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.birthday-gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); }
+.birthday-media { min-width: 0; overflow-wrap: anywhere; display: grid; gap: 8px; }
+.birthday-media p { white-space: pre-wrap; }
+.birthday-media .btn { justify-self: start; }
+@media(min-width:960px) { .birthday-screen .container { max-width: 700px; } }

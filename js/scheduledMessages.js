@@ -12,14 +12,11 @@ export async function createScheduledMessage({ userId, title, content, unlockAt,
 
 /** Toate mesajele programate (ale amândurora), sortate după data de deblocare. */
 export async function getScheduledMessages() {
-  const { data, error } = await supabase
-    .from("scheduled_messages")
-    .select("id, created_by, title, content, unlock_at, photo_path, created_at")
-    .order("unlock_at", { ascending: true });
+  const { data, error } = await supabase.rpc("list_scheduled_messages_secure");
 
   if (error) {
     console.error("Eroare la citirea mesajelor programate:", error.message);
-    return [];
+    throw new Error("Mesajele nu au putut fi încărcate. Verifică internetul și încearcă din nou.");
   }
   return data;
 }
@@ -38,5 +35,6 @@ export function subscribeScheduledMessages(callback) {
 
 /** true dacă data de deblocare a trecut deja. */
 export function isUnlocked(msg) {
-  return new Date(msg.unlock_at).getTime() <= Date.now();
+  // Numai serverul decide; schimbarea ceasului telefonului nu deblochează nimic.
+  return msg.unlocked === true;
 }

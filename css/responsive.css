@@ -43,6 +43,40 @@
 
 /* ---------- Dashboard (Faza 2) ---------- */
 
+/* Navigare laterală pe desktop; cele șase taburi rămân jos pe telefon. */
+@media (min-width: 960px) {
+  .bottom-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    top: 0;
+    right: auto;
+    bottom: 0;
+    width: 180px;
+    height: 100vh;
+    padding: 36px 12px;
+    border-top: 0;
+    border-right: 1px solid var(--border);
+  }
+  .bottom-nav .nav-item {
+    flex: 0 0 auto;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 14px 12px;
+    border-radius: var(--radius-sm);
+  }
+  .bottom-nav .nav-item span { font-size: .85rem; }
+  .bottom-nav .nav-item-active { background: var(--surface-alt); }
+  body:has(.bottom-nav) .screen { margin-left: 180px; }
+}
+
+@media (max-width: 959px) {
+  .bottom-nav .nav-item { min-width: 0; }
+  .bottom-nav .nav-item span { font-size: .6rem; white-space: nowrap; }
+}
+
 /* Pe telefoane foarte mici, mood-urile stau tot pe același rând
    (2 coloane egale funcționează bine chiar și la 360px), dar reducem
    puțin spacing-ul intern al cardurilor. */

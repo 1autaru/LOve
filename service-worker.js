@@ -1,6 +1,6 @@
 // Cache exclusiv pentru resurse locale explicite, niciodată pentru Supabase.
 const PREFIX = `noi-static-${self.registration.scope}-`;
-const CACHE = `${PREFIX}v1`;
+const CACHE = `${PREFIX}v2`;
 const FILES = [
   'offline.html', 'manifest.json', 'css/style.css', 'css/responsive.css',
   'js/pwa.js', 'assets/icon-192.png', 'assets/icon-512.png', 'assets/apple-touch-icon.png',

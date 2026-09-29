@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#faf6f3" />
+  <title>Noi — Pentru tine</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/birthday.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <script src="js/pwa.js" defer></script>
+</head>
+<body>
+  <div id="offline-banner" class="offline-banner" role="status"></div>
+  <main class="screen birthday-screen">
+    <div class="container stack">
+      <header class="birthday-header">
+        <p class="eyebrow">O zi doar a ta</p>
+        <h1>Pentru tine</h1>
+        <p class="text-muted">Un cântec. O aniversare. Amintirile noastre.</p>
+      </header>
+      <p id="birthday-notice" class="notice" role="status">Se verifică accesul…</p>
+      <section id="birthday-locked" class="card stack" hidden>
+        <span class="birthday-seal" aria-hidden="true">♫</span>
+        <h2>O surpriză te așteaptă</h2>
+        <p id="birthday-date" class="text-muted"></p>
+        <p id="birthday-wait">Până atunci, păstrăm puțin mister.</p>
+        <form id="birthday-password-form" class="stack" hidden>
+          <div class="field">
+            <label for="birthday-password">Parola surprizei</label>
+            <input id="birthday-password" type="password" autocomplete="off" required maxlength="72" />
+          </div>
+          <button class="btn btn-primary" type="submit">Deschide spațiul meu</button>
+        </form>
+      </section>
+      <div id="birthday-content" class="stack" hidden>
+        <section class="card stack">
+          <p class="eyebrow">Pentru ochii tăi</p>
+          <h2>O melodie pentru tine</h2>
+          <p id="birthday-audio-empty" class="text-muted">Cântecul nu a fost încă adăugat.</p>
+          <div id="birthday-audio-list" class="stack"></div>
+          <form id="birthday-audio-form" class="stack" hidden>
+            <div class="field"><label for="birthday-audio">Adaugă cântecul · maximum 25 MB</label>
+              <input id="birthday-audio" type="file" accept=".mp3,.m4a,.mp4,.wav,.ogg,.flac,.aac,.webm" required /></div>
+            <div class="field"><label for="birthday-audio-caption">Titlu</label>
+              <input id="birthday-audio-caption" maxlength="300" placeholder="Despre ochii tăi" /></div>
+            <audio id="birthday-audio-preview" controls preload="metadata" hidden></audio>
+            <button class="btn btn-primary" type="submit">Încarcă audio</button>
+          </form>
+        </section>
+        <section class="card stack">
+          <h2>Amintiri de la aniversare</h2>
+          <p id="birthday-photo-note" class="text-muted">Veți putea adăuga fotografii începând din ziua aniversării.</p>
+          <form id="birthday-photo-form" class="stack" hidden>
+            <div class="field"><label for="birthday-photo">Fotografie · JPEG, PNG sau WebP</label>
+              <input id="birthday-photo" type="file" accept="image/jpeg,image/png,image/webp" required /></div>
+            <div class="field"><label for="birthday-photo-caption">O amintire în câteva cuvinte</label>
+              <input id="birthday-photo-caption" maxlength="300" /></div>
+            <img id="birthday-photo-preview" class="photo-preview" alt="Previzualizare" hidden />
+            <button class="btn btn-primary" type="submit">Adaugă fotografia</button>
+          </form>
+          <div id="birthday-photo-list" class="birthday-gallery"></div>
+        </section>
+        <button id="birthday-lock" class="btn btn-ghost" hidden>Închide accesul cu parolă</button>
+      </div>
+    </div>
+  </main>
+  <nav class="bottom-nav" aria-label="Navigare principală">
+    <a href="app.html" class="nav-item">🏠<span>Home</span></a>
+    <a href="memories.html" class="nav-item">📸<span>Amintiri</span></a>
+    <a href="messages.html" class="nav-item">💌<span>Mesaje</span></a>
+    <a href="poems.html" class="nav-item">📝<span>Poezii</span></a>
+    <a href="birthday.html" class="nav-item nav-item-active" aria-current="page">🔒<span>Pentru tine</span></a>
+    <span class="nav-item nav-item-disabled">⚙️<span>Setări</span></span>
+  </nav>
+  <script type="module" src="js/birthdayPage.js"></script>
+</body>
+</html>
