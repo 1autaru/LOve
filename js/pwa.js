@@ -69,7 +69,11 @@
   }
 
   if ('serviceWorker' in navigator && window.isSecureContext) {
-    navigator.serviceWorker.register(new URL('service-worker.js', base), { scope: base.pathname })
+    navigator.serviceWorker.register(new URL('service-worker.js', base), {
+      scope: base.pathname,
+      updateViaCache: 'none',
+    })
+      .then(registration => registration.update())
       .catch(() => {
         const status = document.getElementById('pwa-status');
         if (status) status.textContent = 'Pregătirea modului offline a eșuat. Reîncearcă online.';

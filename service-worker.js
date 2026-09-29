@@ -1,6 +1,6 @@
 // Cache exclusiv pentru resurse locale explicite, niciodată pentru Supabase.
 const PREFIX = `noi-static-${self.registration.scope}-`;
-const CACHE = `${PREFIX}v3`;
+const CACHE = `${PREFIX}v4`;
 const FILES = [
   'offline.html', 'manifest.json', 'css/style.css', 'css/responsive.css',
   'js/pwa.js', 'js/appearance.js', 'css/settings.css', 'css/playful.css', 'assets/icon-192.png', 'assets/icon-512.png', 'assets/apple-touch-icon.png',
@@ -9,7 +9,11 @@ const allowed = new Set(FILES.map(path => new URL(path, self.registration.scope)
 const offlineURL = new URL('offline.html', self.registration.scope).href;
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE);
+    await cache.addAll(FILES.map(path => new Request(new URL(path, self.registration.scope), { cache: 'reload' })));
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', event => {
@@ -30,16 +34,26 @@ self.addEventListener('fetch', event => {
   if (request.mode === 'navigate') {
     event.respondWith((async () => {
       try {
-        return await fetch(request);
+        return await fetch(request, { cache: 'no-store' });
       } catch {
         return (await caches.open(CACHE)).match(offlineURL);
       }
     })());
     return;
   }
-  if (!allowed.has(url.href)) return;
+  const relativePath = url.pathname.slice(new URL(self.registration.scope).pathname.length);
+  const codeAsset = /^(js\/[\w-]+\.js|css\/[\w-]+\.css)$/.test(relativePath);
+  if (!allowed.has(url.href) && !codeAsset) return;
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
-    return (await cache.match(request)) || fetch(request);
+    try {
+      const response = await fetch(request, { cache: 'no-store' });
+      if (response.ok && allowed.has(url.href)) await cache.put(request, response.clone());
+      return response;
+    } catch (error) {
+      const cached = await cache.match(request);
+      if (cached) return cached;
+      throw error;
+    }
   })());
 });
