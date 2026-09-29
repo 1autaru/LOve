@@ -1,0 +1,41 @@
+/* Strat opțional. Stilul Elegant păstrează CSS-ul anterior. */
+html[data-look="playful"] { --radius-lg:30px; --radius-md:22px; --radius-sm:16px; }
+[data-look="playful"] body {
+  background-image:radial-gradient(var(--border) 1.4px,transparent 1.4px);
+  background-size:22px 22px;
+}
+[data-look="playful"] h1,[data-look="playful"] h2,[data-look="playful"] h3 {
+  font-family:ui-rounded,'Trebuchet MS','Plus Jakarta Sans',sans-serif;
+  font-weight:800; letter-spacing:-.035em;
+}
+[data-look="playful"] h1 { font-size:clamp(2rem,7vw,2.75rem); }
+[data-look="playful"] .card {
+  border:2px solid var(--accent-soft);
+  box-shadow:0 5px 0 var(--surface-alt),0 10px 24px var(--border);
+}
+[data-look="playful"] .btn {
+  border-radius:999px; font-weight:700;
+  box-shadow:0 3px 0 var(--accent-soft);
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+[data-look="playful"] .btn:active { transform:translateY(2px); box-shadow:0 1px 0 var(--accent-soft); }
+[data-look="playful"] .btn:disabled { box-shadow:none; }
+[data-look="playful"] .eyebrow { letter-spacing:.08em; }
+[data-look="playful"] .dashboard-header::after,
+[data-look="playful"] .birthday-header::after {
+  content:'✦  ·  ✿  ·  ✦'; display:block; color:var(--accent-gold);
+  letter-spacing:.5em; margin-top:12px; font-size:1.3rem;
+}
+[data-look="playful"] .mood-option { border-radius:20px; }
+[data-look="playful"] .mood-option-emoji { font-size:2rem; }
+[data-look="playful"] .nav-item-active { background:var(--surface-alt); border-radius:18px; }
+[data-look="playful"] .bottom-nav { border-color:var(--accent-soft); }
+[data-look="playful"] input,[data-look="playful"] textarea { border-width:2px; }
+[data-look="playful"] .birthday-seal {
+  width:84px; height:84px; display:grid; place-items:center;
+  border-radius:30% 45% 35% 45%; background:var(--surface-alt); transform:rotate(-7deg);
+}
+@media(prefers-reduced-motion:reduce) {
+  [data-look="playful"] .btn { transition:none; }
+  [data-look="playful"] .btn:active { transform:none; }
+}

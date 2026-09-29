@@ -1,9 +1,9 @@
 // Cache exclusiv pentru resurse locale explicite, niciodată pentru Supabase.
 const PREFIX = `noi-static-${self.registration.scope}-`;
-const CACHE = `${PREFIX}v2`;
+const CACHE = `${PREFIX}v3`;
 const FILES = [
   'offline.html', 'manifest.json', 'css/style.css', 'css/responsive.css',
-  'js/pwa.js', 'assets/icon-192.png', 'assets/icon-512.png', 'assets/apple-touch-icon.png',
+  'js/pwa.js', 'js/appearance.js', 'css/settings.css', 'css/playful.css', 'assets/icon-192.png', 'assets/icon-512.png', 'assets/apple-touch-icon.png',
 ];
 const allowed = new Set(FILES.map(path => new URL(path, self.registration.scope).href));
 const offlineURL = new URL('offline.html', self.registration.scope).href;

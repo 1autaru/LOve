@@ -15,6 +15,9 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <script src="js/pwa.js" defer></script>
+  <link rel="stylesheet" href="css/settings.css" />
+  <link rel="stylesheet" href="css/playful.css" />
+  <script src="js/appearance.js"></script>
 </head>
 <body>
   <div id="offline-banner" class="offline-banner">Ești offline — vezi doar ce e deja încărcat</div>
@@ -45,6 +48,7 @@
           <path d="M0,7 Q50,-3 100,7 T200,7" />
         </svg>
 
+        <section id="couple-hero" class="card couple-hero" hidden><img id="couple-cover" class="couple-cover" alt="Fotografia noastră" hidden /><div id="couple-people" class="couple-people"></div><p id="couple-days" class="couple-days"></p></section>
         <section class="card mood-card">
           <div class="mood-row">
             <div class="mood-block">
@@ -117,7 +121,7 @@
     <a href="messages.html" class="nav-item">💌<span>Mesaje</span></a>
     <a href="poems.html" class="nav-item">📝<span>Poezii</span></a>
     <a href="birthday.html" class="nav-item">🔒<span>Pentru tine</span></a>
-    <span class="nav-item nav-item-disabled">⚙️<span>Setări</span></span>
+    <a href="settings.html" class="nav-item">⚙️<span>Setări</span></a>
   </nav>
 
   <!-- Mood picker (simplu overlay, nu un dialog complex) -->
@@ -166,5 +170,6 @@
   </div>
 
   <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/homeCouple.js"></script>
 </body>
 </html>

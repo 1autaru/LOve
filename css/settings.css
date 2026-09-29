@@ -1,0 +1,14 @@
+.settings-section { display:grid; gap:18px; }
+.settings-section h2 { font-size:1.25rem; }
+.settings-section input[type=file], .settings-section select { width:100%; max-width:100%; }
+.settings-section select { padding:12px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); }
+.settings-avatar { width:88px; height:88px; object-fit:cover; border-radius:50%; border:3px solid var(--surface-alt); }
+.settings-cover { width:100%; max-height:280px; object-fit:cover; border-radius:var(--radius-md); }
+.settings-actions { display:flex; flex-wrap:wrap; gap:10px; }
+.couple-hero { margin:18px 0; overflow:hidden; }
+.couple-hero img.couple-cover { width:100%; max-height:300px; object-fit:cover; border-radius:var(--radius-md); margin-bottom:18px; }
+.couple-people { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+.couple-person { display:flex; align-items:center; gap:8px; }
+.couple-person img { width:42px; height:42px; border-radius:50%; object-fit:cover; }
+.couple-days { margin-top:14px; font-size:1.1rem; }
+.settings-screen .container { max-width:640px; }

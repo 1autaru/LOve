@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#faf6f3" />
+  <title>Noi — Setări</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <script src="js/pwa.js" defer></script>
+  <link rel="stylesheet" href="css/settings.css" />
+  <link rel="stylesheet" href="css/playful.css" />
+  <script src="js/appearance.js"></script>
+</head>
+<body>
+  <div id="offline-banner" class="offline-banner" role="status"></div>
+  <main class="screen settings-screen">
+    <div class="container stack">
+      <header><p class="eyebrow">Pe gustul nostru</p><h1>Setări</h1><p class="text-muted">Lucrurile mici care fac locul acesta al vostru.</p></header>
+      <p id="settings-notice" class="notice" role="status" hidden></p>
+      <section class="card settings-section">
+        <h2>Aspectul aplicației</h2>
+        <div class="field"><label for="appearance-style">Stil</label><select id="appearance-style" data-local-setting><option value="elegant">Elegant — aspectul original</option><option value="playful">Jucăuș — rotunjit și vesel</option></select></div>
+        <div class="field"><label for="appearance-theme">Temă</label><select id="appearance-theme" data-local-setting><option value="light">Luminoasă</option><option value="dark">Întunecată</option><option value="system">După setarea dispozitivului</option></select></div>
+        <p class="text-muted">Poți reveni oricând la Elegant. Alegerea se păstrează doar pe acest dispozitiv.</p>
+      </section>
+      <div id="remote-settings" class="stack" hidden>
+        <section class="card settings-section">
+          <h2>Profilul tău</h2>
+          <form id="name-form" class="stack"><div class="field"><label for="profile-name">Numele afișat</label><input id="profile-name" maxlength="60" required autocomplete="nickname" /></div><button class="btn btn-primary" type="submit">Salvează numele</button></form>
+          <img id="avatar-current" class="settings-avatar" alt="Avatarul tău" hidden />
+          <form id="avatar-form" class="stack"><div class="field"><label for="avatar-file">Avatar nou</label><input id="avatar-file" type="file" accept="image/jpeg,image/png,image/webp" required /></div><img id="avatar-preview" class="settings-avatar" alt="Previzualizare avatar" hidden /><button class="btn btn-ghost" type="submit">Salvează avatarul</button></form>
+        </section>
+        <section class="card settings-section">
+          <h2>Povestea voastră</h2>
+          <p class="text-muted">Fotografia și data sunt comune. Oricare dintre voi le poate actualiza.</p>
+          <img id="cover-current" class="settings-cover" alt="Fotografia voastră" hidden />
+          <form id="cover-form" class="stack"><div class="field"><label for="cover-file">Fotografia principală</label><input id="cover-file" type="file" accept="image/jpeg,image/png,image/webp" required /></div><img id="cover-preview" class="settings-cover" alt="Previzualizare fotografie" hidden /><button class="btn btn-primary" type="submit">Salvează fotografia</button></form>
+          <form id="date-form" class="stack"><div class="field"><label for="relationship-date">Împreună din</label><input id="relationship-date" type="date" required /></div><button class="btn btn-ghost" type="submit">Salvează data</button></form>
+        </section>
+      </div>
+      <section class="card settings-section">
+        <h2>Aplicația pe telefon</h2>
+        <p>Pe Android, folosește butonul „Instalează Noi”, când apare, sau meniul browserului. Pe iPhone, deschide în Safari și alege Partajare → Adaugă pe ecranul principal.</p>
+        <p class="text-muted">Offline este disponibilă pagina locală. Datele și fotografiile se încarcă atunci când ai internet.</p>
+        <p class="text-muted">Notificările push nu sunt activate în această versiune.</p>
+      </section>
+      <button id="settings-logout" class="btn btn-ghost">Ieși din cont</button>
+    </div>
+  </main>
+  <nav class="bottom-nav" aria-label="Navigare principală">
+    <a href="app.html" class="nav-item">🏠<span>Home</span></a>
+    <a href="memories.html" class="nav-item">📸<span>Amintiri</span></a>
+    <a href="messages.html" class="nav-item">💌<span>Mesaje</span></a>
+    <a href="poems.html" class="nav-item">📝<span>Poezii</span></a>
+    <a href="birthday.html" class="nav-item">🔒<span>Pentru tine</span></a>
+    <a href="settings.html" class="nav-item nav-item-active" aria-current="page">⚙️<span>Setări</span></a>
+  </nav>
+  <script type="module" src="js/settingsPage.js"></script>
+</body>
+</html>
